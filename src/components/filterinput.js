@@ -8,12 +8,8 @@ class FilterInput extends Component {
             <div>
                 <input value={this.state.inputValue} type="text" placeholder="Entrez une valeur à filtrer.." onChange={(e) => {
                     this.setState({inputValue: e.target.value});
+                    this.props.onChange(this.state.inputValue);
                 }} />
-               <button onClick={() => {
-                   this.props.onClick(this.state.inputValue);
-                   this.setState({inputValue: ''});
-               }}>Filtrer</button>
-               <button>Recharger la liste</button>
             </div>
         )
     }

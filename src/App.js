@@ -14,18 +14,23 @@ class App extends Component {
   }
 
   filterValue = (inputValue) => {
-    const todos = [];
-    this.state.todos.map((element, index) => {
-      if (element !== '')
-      {
-        if (element == inputValue)
-        {
-          todos.push(element);
-        }
-      }
-    });
+    const newTodos = [];
+
+    const result = this.state.todos.filter(todo => todo == inputValue);
     
-    this.setState({todos});
+    console.log(result)
+    // this.state.todos.map((element, index) => {
+      // if (element !== '')
+      // {
+        // words.filter(word => word.length > 6);
+        // if (element === inputValue)
+        // {
+        //   console.log('ici');
+        //   newTodos.push(element);
+        //   this.setState({newTodos});
+        // }
+      // }
+    // });
   }
 
   addValue = (inputValue) => {
@@ -34,7 +39,6 @@ class App extends Component {
   }
 
   onDelete = (index) => {
-    console.log('delete ', index);
     const todos = this.state.todos.filter((todo, i) => i !== index);
     this.setState({todos});
   }
@@ -42,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FilterInput onClick={(inputValue) => this.filterValue(inputValue)}/>
+        <FilterInput onChange={(inputValue) => this.filterValue(inputValue)}/>
         {this.state.todos.map((todo, index) => <Item label={todo} onClick={() => this.onDelete(index)} />)}
         <br/>
         <TextInput onClick={(inputValue) => this.addValue(inputValue)}/> 
